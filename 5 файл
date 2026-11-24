@@ -1,0 +1,95 @@
+#include "Student.h"
+#include <iostream>
+
+student* createArray(int size);
+void deleteArray(student*& x);
+student* resizeArray(student* oldArray, int oldSize, int addSize);
+
+void searchFacult(student* arr, int size, std::string poiskFacult);
+void searchYcpev(student* arr, int size, float poiskYcpef);
+
+void Menu() {
+	student* students = nullptr;
+	int currentSize = 0;
+	int choice;
+
+	do {
+		std::cout << "1. Add student records" << std::endl;
+		std::cout << "2. Display information about all students" << std::endl;
+		std::cout << "3. Search students by faculty" << std::endl;
+		std::cout << "4. Search students by average grade" << std::endl;
+		std::cout << "0. Exit" << std::endl;
+		vvod(choice, "Your choice: ");
+
+		switch (choice) {
+		case 1: {
+			int addSize;
+			vvod(addSize, "Enter the number of students to add: ");
+
+			if (addSize <= 0) {
+				std::cout << "The number must be greater than zero!" << std::endl;
+				break;
+			}
+
+			int startIndex = currentSize;
+
+			if (students == nullptr) {
+				students = createArray(addSize);
+				currentSize = addSize;
+			}
+			else {
+				students = resizeArray(students, currentSize, addSize);
+				currentSize += addSize;
+			}
+
+			for (int i = startIndex; i < currentSize; i++) {
+				std::cout << "\nEntering data for student #" << i + 1 << std::endl;
+				students[i].setName();
+				students[i].setFam();
+				students[i].setOtch();
+				students[i].setGroup();
+				students[i].setFacult();
+				students[i].setSpecial();
+				students[i].setYcpef();
+			}
+			std::cout << "\nSuccessfully added " << addSize << " records!\n";
+			break;
+		}
+		case 2: {
+			if (currentSize == 0) {
+				std::cout << "No information available..." << std::endl;
+				break;
+			}
+			std::cout << "\n=== STUDENT LIST ===\n";
+			for (int i = 0; i < currentSize; i++) {
+				std::cout << i + 1 << ". " << students[i].getName() << " " << students[i].getFam() << " " << students[i].getOtch() << " | Group: " << students[i].getGroup() << " | Faculty: " << students[i].getFacult() << " | Specialty: " << students[i].getSpecial() << " | Avg. grade: " << students[i].getYcpef() << std::endl;
+			}
+			break;
+		}
+		case 3: {
+			std::string targetFaculty;
+			vvod(targetFaculty, "Enter faculty to search for: ");
+			searchFacult(students, currentSize, targetFaculty);
+			break;
+		}
+		case 4: {
+			float targetGrade;
+			vvod(targetGrade, "Enter minimum grade (students with higher grades will be selected): ");
+			searchYcpev(students, currentSize, targetGrade);
+			break;
+		}
+		case 0: {
+			std::cout << "Exiting the program..." << std::endl;
+			break;
+		}
+		default: {
+			std::cout << "Invalid choice! Please try again." << std::endl;
+			break;
+		}
+		}
+	} while (choice != 0);
+
+	if (students != nullptr) {
+		deleteArray(students);
+	}
+}
