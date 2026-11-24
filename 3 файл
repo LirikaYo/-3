@@ -1,1 +1,22 @@
+#include "Student.h"
 
+student* createArray(int size) {
+	student* x = new student[size];
+	return x;
+}
+
+void deleteArray(student*& x) {
+	delete[] x;
+	x = nullptr;
+}
+
+student* resizeArray(student* oldArray, int oldSize, int newSize) {
+	student* newArray = createArray(oldSize + newSize);
+
+	for (int i = 0; i < oldSize; i++) {
+		newArray[i] = oldArray[i];
+	}
+	deleteArray(oldArray);
+
+	return newArray;
+}
