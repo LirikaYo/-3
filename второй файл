@@ -1,0 +1,67 @@
+#include "Student.h"
+
+student::student() {
+    name = "";
+    fam = "";
+    otch = "";
+    group = "";
+    facult = "";
+    special = "";
+    sr_ball = 0;
+}
+
+void student::setName() {
+    vvod(name, "Enter first name: ");
+}
+
+void student::setFam() {
+    vvod(fam, "Enter last name: ");
+}
+
+void student::setOtch() {
+    vvod(otch, "Enter middle name: ");
+}
+
+void student::setGroup() {
+    vvod(group, "Enter group: ");
+}
+
+void student::setFacult() {
+    vvod(facult, "Enter faculty: ");
+}
+
+void student::setSpecial() {
+    vvod(special, "Enter specialty: ");
+}
+
+void student::setYcpef() {
+    vvod(sr_ball, "Enter average grade: ");
+}
+
+std::string student::getName() {
+    return name;
+}
+
+std::string student::getFam() {
+    return fam;
+}
+
+std::string student::getOtch() {
+    return otch;
+}
+
+std::string student::getFacult() {
+    return facult;
+}
+
+std::string student::getGroup() {
+    return group;
+}
+
+std::string student::getSpecial() {
+    return special;
+}
+
+float student::getYcpef() {
+    return sr_ball;
+}
