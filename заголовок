@@ -1,0 +1,39 @@
+# ifndef STUDENT_H
+#define  STUDENT_H
+#include <iostream>
+#include <string>
+#include <locale>
+
+template<typename example>
+void vvod(example& x, std::string s) {
+	std::cout << s;
+	std::cin >> x;
+}
+template<typename example>
+void vivod(example& x, std::string s) {
+	std::cout << s << x << std::endl;
+}
+
+class student {
+private:
+	std::string name = "", fam = "", otch = "", group = "", facult = "", special = "";
+	float sr_ball = 0;
+public:
+	student();
+	void setName();
+	void setFam();
+	void setOtch();
+	void setGroup();
+	void setFacult();
+	void setSpecial();
+	void setYcpef();
+	std::string getName();
+	std::string getFam();
+	std::string getOtch();
+	std::string getGroup();
+	std::string getFacult();
+	std::string getSpecial();
+	float getYcpef();
+};
+
+#endif
